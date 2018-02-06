@@ -41,7 +41,7 @@ class ListEventsShortcode {
 			return;	
 		
         $params = [
-            '@select'    => 'id,name,occurrences.space.*',
+            '@select'    => 'name,shortDescription,occurrences.space.name,occurrences.space.endereco, occurrences.space.En_Municipio, occurrences.space.En_Estado',
             'space:type' => 'BET(20,29)'
         ];
         $url = add_query_arg($params, $atts['url'] . '/api/event/findByLocation');            
