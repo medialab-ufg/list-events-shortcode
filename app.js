@@ -38,6 +38,8 @@ jQuery( document ).ready(function() {
 });
 
 function getEvents(){
+    jQuery('.list_spaces').html('');
+    jQuery('#loading').show('fast');
 
     var date_listevents = jQuery('#date_listevents').data('daterangepicker');
 
@@ -54,15 +56,22 @@ function getEvents(){
         type: 'GET',
         data: {},
         success: function(response) {
+            console.log(response);
             showEvents(response);
         }
     });
 }
 
 function showEvents(events){
-    jQuery('.list_spaces').html('');
+    jQuery('#loading').hide('fast');
 
+    html = '';
     for (var i = 0; i < events.length; i++) {
-        jQuery('.list_spaces').append(events[i].id + ' - ' + events[i].name + '<br>');
+        html += '<div class="list_events_item"><h3>' + events[i].name + '</h3>';
+        html += '<p>' + events[i].shortDescription + '</p>';
+        html += '<span>Local: ' + events[i].occurrences[0].space.name + events[i].occurrences[0].space.endereco + '</span>';
+        html += '<hr></div>';
     }
+
+    jQuery('.list_spaces').append(html);
 }

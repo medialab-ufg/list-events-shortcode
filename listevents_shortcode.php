@@ -27,26 +27,26 @@ class ListEventsShortcode {
 		wp_enqueue_style( 'bootst', '//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css');
 		// END FOR TEST ALONE:
 
-        #wp_enqueue_style('list-events-shortcode', plugin_dir_url( __FILE__ ) . '/list-events.css' );
+        wp_enqueue_style('list-events-shortcode', plugin_dir_url( __FILE__ ) . '/list-events.css' );
         wp_enqueue_style('list-events-css-daterangepicker', '//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css');
         wp_enqueue_script('list-events-js-daterangepicker', '//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js');
 
-        wp_enqueue_script( 'listevents-ajax-script', plugin_dir_url( __FILE__ ) . 'app.js', array('jquery'));    
-        
+        wp_enqueue_script( 'listevents-ajax-script', plugin_dir_url( __FILE__ ) . 'app.js', array('jquery'));
+
     }
 
-    
+
     function shortcode($atts, $content) {
-        if (!is_array($atts) || !isset($atts['url']))			
-			return;	
-		
+        if (!is_array($atts) || !isset($atts['url']))
+			return;
+
         $params = [
             '@select'    => 'name,shortDescription,occurrences.space.name,occurrences.space.endereco, occurrences.space.En_Municipio, occurrences.space.En_Estado',
             'space:type' => 'BET(20,29)'
         ];
-        $url = add_query_arg($params, $atts['url'] . '/api/event/findByLocation');            
+        $url = add_query_arg($params, $atts['url'] . '/api/event/findByLocation');
         $result = $this->getEvents($atts, $url);
-        
+
         if (false === $result)
             return;
 
@@ -58,19 +58,19 @@ class ListEventsShortcode {
         return $html;
 	}
 
-    function getEvents($atts, $url) {		
+    function getEvents($atts, $url) {
 		$params['@from'] = date('Y-m-d');
-        if (!isset($atts['range_date'])) {			
+        if (!isset($atts['range_date'])) {
 			$params['@to']   = date('Y-m-d', strtotime($params['@from']. ' + 30 days'));
 		} else {
             $params['@to']   = date('Y-m-d', strtotime($params['@from']. ' + ' . $atts['range_date'] . ' days'));
         }
-        $url = add_query_arg($params, $url);        
+        $url = add_query_arg($params, $url);
         $response = wp_remote_get( $url, array('timeout' => 20));
         return wp_remote_retrieve_response_code($response) == 200 ? wp_remote_retrieve_body($response) : false;
     }
 }
 
-add_action('init', function() {	
+add_action('init', function() {
     $ListEventsShortcode = new ListEventsShortcode;
 });

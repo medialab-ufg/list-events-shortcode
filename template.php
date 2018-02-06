@@ -14,16 +14,11 @@
             </div>
         </div>
 
-
-
-
+		<div id="loading" class="spinner" style="display:none;"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>
 		<div class="list_spaces">
 			<?php foreach ($events as $event): ?>
 				<div class="list_events_item">
-					<small>
-						<?php echo $event->id; ?>
-					</small>
-					<?php echo $event->name; ?>
+						<?php echo $event->name; ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
