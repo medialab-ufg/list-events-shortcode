@@ -65,8 +65,7 @@ class ListEventsShortcode {
 		} else {
             $params['@to']   = date('Y-m-d', strtotime($params['@from']. ' + ' . $atts['range_date'] . ' days'));
         }
-        $url = add_query_arg($params, $url);
-        echo "URL FORMAT: $url <br>";
+        $url = add_query_arg($params, $url);        
         $response = wp_remote_get( $url, array('timeout' => 20));
         return wp_remote_retrieve_response_code($response) == 200 ? wp_remote_retrieve_body($response) : false;
     }
