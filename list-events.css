@@ -1,3 +1,27 @@
+#date_listevents{
+    background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;margin-top: -40px;
+}
+.list_spaces{
+    margin-top: 40px;
+}
+
+.list_events_item{
+    background-color: #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-height: 300px;
+}
+
+.list_events_item img{
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 150px;
+}
+
+.list_events_item ul li{
+    list-style-type: none;
+}
+
 .spinner {
   margin: 100px auto 0;
   width: 70px;

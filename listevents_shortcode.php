@@ -22,7 +22,7 @@ class ListEventsShortcode {
     function addScripts() {
 
 		// FOR TEST ALONE:
-		wp_enqueue_script('jquery', '//cdn.jsdelivr.net/jquery/1/jquery.min.js');
+		wp_enqueue_script('jquery');
 		wp_enqueue_script('moment', '//cdn.jsdelivr.net/momentjs/latest/moment.min.js');
 		wp_enqueue_style( 'bootst', '//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css');
 		// END FOR TEST ALONE:
@@ -41,6 +41,7 @@ class ListEventsShortcode {
 			return;
 
         $params = [
+            '@files'     => '(header.header,avatar.avatarBig):url',
             '@select'    => 'name,shortDescription,occurrences.rule,occurrences.space.name,occurrences.space.endereco,occurrences.space.En_Municipio,occurrences.space.En_Estado&space',
             'space:type' => 'BET(20,29)'
         ];

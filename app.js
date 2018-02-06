@@ -67,10 +67,33 @@ function showEvents(events){
 
     html = '';
     for (var i = 0; i < events.length; i++) {
-        html += '<div class="list_events_item"><h3>' + events[i].name + '</h3>';
-        html += '<p>' + events[i].shortDescription + '</p>';
-        html += '<span>Local: ' + events[i].occurrences[0].space.name + events[i].occurrences[0].space.endereco + '</span>';
-        html += '<hr></div>';
+        if(typeof events[i]['@files:avatar.avatarBig'] != 'undefined')
+            thumb = '<img src="' + events[i]['@files:avatar.avatarBig'].url + '" style="float: left;">';
+        else
+            thumb = '';
+
+        spaces = new Array();
+
+        html += `<div class="list_events_item">
+            <h3>` + events[i].name + `</h3>
+            <p>` + thumb + events[i].shortDescription + `</p>`;
+
+            for (var y = 0; y < events[i].occurrences.length; y++) {
+
+                console.log(events[i].occurrences[y].space.id + '-' +events[i].occurrences[y].space.name);
+                //spaces.push[events[i].occurrences[y].space.id]
+
+                html += `<div>
+                            <strong>` + events[i].occurrences[y].space.name + `</strong>` +
+                                `<ul><li>` +
+                             events[i].occurrences[y].space.endereco +
+                            `</li><li>` +
+                             events[i].occurrences[y].rule.description + `, ` + events[i].occurrences[y].rule.price +
+                        `</li></ul></div>`;
+            }
+
+            html += `</ul></div>`;
+
     }
 
     jQuery('.list_spaces').append(html);
