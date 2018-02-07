@@ -3,7 +3,7 @@ Shortcode for WordPress to list events retrieved using the Mapas Culturais API
 
 # Como usar
 
-Para listar os eventos dentro de uma página ou post utilize o shortcode "list_events" com os atributos:
+Para listar os eventos dos Museus dentro de uma página ou post utilize o shortcode "list_events" com os atributos:
 
 
 ### Atributo URL (*obrigatório*):
@@ -31,3 +31,15 @@ Caso não seja informado o valor padrão é 30 dias
 [list_events url=http://museus.cultura.gov.br date_range=20]
 ```
 
+### Atributo title (*opcional [default=""]*):
+```
+[list_events url=<domínio da API do mapas culturais> title="<título da página>"]
+```
+O atributo **title** recebe um texto com o título da página.
+
+
+Caso não seja informado não será exibido o título na página.
+
+#### Exemplo:
+```
+[list_events url=http://museus.cultura.gov.br title="Evento dos Museus"]

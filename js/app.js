@@ -63,6 +63,7 @@ function getEvents(){
 
 function showEvents(events){
     jQuery('#loading').hide('fast');
+    baseurl = jQuery('#date_listevents').data('baseurl');
 
     html = '';
     for (var i = 0; i < events.length; i++) {
@@ -73,25 +74,29 @@ function showEvents(events){
 
         spaces = new Array();
 
-        html += `<div class="list_events_item">
-            <h3>` + events[i].name + `</h3>
-            <p>` + thumb + events[i].shortDescription + `</p>`;
+        html += `<div class="row list_events_item">
+                    <div class="col-md-3">${thumb}</div>
+                    <div class="col-md-9">
+                        <h3><a href="${baseurl}/evento/${events[i].id}" target="_blank">${events[i].name}</a></h3>
+                        <p>${events[i].shortDescription}</p>`;
 
-            for (var y = 0; y < events[i].occurrences.length; y++) {
-                if(typeof spaces[events[i].occurrences[y].space.name] == 'undefined'){
-                    spaces[events[i].occurrences[y].space.name] = '';
-                    html += `<div><strong>` + events[i].occurrences[y].space.name + `</strong><ul>`;
-                }
+                        for (var y = 0; y < events[i].occurrences.length; y++) {
+                            if(typeof spaces[events[i].occurrences[y].space.name] == 'undefined'){
+                                spaces[events[i].occurrences[y].space.name] = '';
+                                html += `<a href="${baseurl}/espaco/${events[i].occurrences[y].space.id}" target="_blank">
+                                            <strong>${events[i].occurrences[y].space.name}</strong>
+                                        </a><ul>`;
+                            }
 
-                spaces[events[i].occurrences[y].space.name] +=
-                    `<li>` +
-                        events[i].occurrences[y].space.endereco + `,` +
-                        events[i].occurrences[y].rule.description + `, ` + events[i].occurrences[y].rule.price +
-                    `</li>`;
+                            spaces[events[i].occurrences[y].space.name] +=
+                                `<li>
+                                    ${events[i].occurrences[y].space.endereco},
+                                    ${events[i].occurrences[y].rule.description}, ${events[i].occurrences[y].rule.price}
+                                </li>`;
 
-                if(y == events[i].occurrences.length - 1){
-                    html += spaces[events[i].occurrences[y].space.name] + `</ul></div>`;
-                }
+                            if(y == events[i].occurrences.length - 1){
+                                html += spaces[events[i].occurrences[y].space.name] + `</ul></div>`;
+                            }
 
             }
 
