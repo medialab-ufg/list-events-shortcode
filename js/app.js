@@ -85,17 +85,16 @@ function showEvents(events){
                                 spaces[events[i].occurrences[y].space.name] = '';
                                 html += `<a href="${baseurl}/espaco/${events[i].occurrences[y].space.id}" target="_blank">
                                             <strong>${events[i].occurrences[y].space.name}</strong>
-                                        </a><ul>`;
+                                        </a><br><small><b>${events[i].occurrences[y].space.endereco}</b><ul>`;
                             }
 
                             spaces[events[i].occurrences[y].space.name] +=
                                 `<li>
-                                    ${events[i].occurrences[y].space.endereco},
                                     ${events[i].occurrences[y].rule.description}, ${events[i].occurrences[y].rule.price}
                                 </li>`;
 
                             if(y == events[i].occurrences.length - 1){
-                                html += spaces[events[i].occurrences[y].space.name] + `</ul></div>`;
+                                html += spaces[events[i].occurrences[y].space.name] + `</ul></small></div>`;
                             }
 
             }

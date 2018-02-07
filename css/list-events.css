@@ -21,6 +21,10 @@
     width: 150px;
 }
 
+.list_events_item ul{
+    margin-left: 20px;
+}
+
 .list_events_item ul li{
     list-style-type: none;
 }
