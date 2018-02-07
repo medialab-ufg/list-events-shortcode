@@ -21,8 +21,10 @@ O atribuito **URL** recebe como valor o endereço ou domínio onde se encontra a
 ```
 [list_events url=<domínio da API do mapas culturais> date_range=<período de dias>]
 ```
-O atributo **date_range** recebe um período de dias para exibir os resultados da pagina inicial
-caso não seja informado o valor padrão é 30 dias
+O atributo **date_range** recebe um período de dias para exibir os resultados na pagina inicial.
+
+
+Caso não seja informado o valor padrão é 30 dias
 
 #### Exemplo:
 ```
