@@ -1,5 +1,7 @@
 jQuery( document ).ready(function() {
     jQuery('#date_listevents').daterangepicker({
+        startDate:  moment().format('DD/MM/YYYY'),
+        endDate:    moment().add(jQuery('#date_listevents').data('range'), 'days').format('DD/MM/YYYY'),
         locale: {
             format:         'DD/MM/YYYY',
             applyLabel:     'Buscar',
