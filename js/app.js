@@ -74,13 +74,14 @@ function showEvents(events){
 
         spaces = new Array();
 
+
         html += `<div class="row list_events_item">
                     <div class="col-md-3">${thumb}</div>
                     <div class="col-md-9">
                         <h3><a href="${baseurl}/evento/${events[i].id}" target="_blank">${events[i].name}</a></h3>
                         <p>${events[i].shortDescription}</p>`;
 
-                        for (var y = 0; y < events[i].occurrences.length; y++) {
+                        /*for (var y = 0; y < events[i].occurrences.length; y++) {
                             if(typeof spaces[events[i].occurrences[y].space.name] == 'undefined'){
                                 spaces[events[i].occurrences[y].space.name] = '';
                                 html += `<a href="${baseurl}/espaco/${events[i].occurrences[y].space.id}" target="_blank">
@@ -97,9 +98,32 @@ function showEvents(events){
                                 html += spaces[events[i].occurrences[y].space.name] + `</ul></small></div>`;
                             }
 
-            }
+                        }*/
 
-            html += '</div>';
+                        periods = new Array();
+                        for (var y = 0; y < events[i].occurrences.length; y++) {
+                            if(typeof periods[events[i].occurrences[y].space.name] == 'undefined')
+                                periods[events[i].occurrences[y].space.name] = '';
+
+                            spaces[events[i].occurrences[y].space.name] = {
+                                name:events[i].occurrences[y].space.name,
+                            };
+
+
+
+                            periods[events[i].occurrences[y].space.name] +=
+                                `<li>
+                                    ${events[i].occurrences[y].rule.description}, ${events[i].occurrences[y].rule.price}
+                                </li>`;
+                        }
+
+
+                        var l;
+                        for (l in spaces) {
+                            html += `<small><ul><b>${spaces[l].name}</b>${periods[spaces[l].name]}</ul></small>`;
+                        }
+
+            html += '</div></div>';
 
     }
 
