@@ -67,38 +67,17 @@ function showEvents(events){
 
     html = '';
     for (var i = 0; i < events.length; i++) {
+        thumb = '';
         if(typeof events[i]['@files:avatar.avatarBig'] != 'undefined')
             thumb = '<img src="' + events[i]['@files:avatar.avatarBig'].url + '" style="float: left;">';
-        else
-            thumb = '';
 
         spaces = new Array();
-
 
         html += `<div class="row list_events_item">
                     <div class="col-md-3">${thumb}</div>
                     <div class="col-md-9">
                         <h3><a href="${baseurl}/evento/${events[i].id}" target="_blank">${events[i].name}</a></h3>
-                        <p>${events[i].shortDescription}</p>`;
-
-                        /*for (var y = 0; y < events[i].occurrences.length; y++) {
-                            if(typeof spaces[events[i].occurrences[y].space.name] == 'undefined'){
-                                spaces[events[i].occurrences[y].space.name] = '';
-                                html += `<a href="${baseurl}/espaco/${events[i].occurrences[y].space.id}" target="_blank">
-                                            <strong>${events[i].occurrences[y].space.name}</strong>
-                                        </a><br><small><b>${events[i].occurrences[y].space.endereco}</b><ul>`;
-                            }
-
-                            spaces[events[i].occurrences[y].space.name] +=
-                                `<li>
-                                    ${events[i].occurrences[y].rule.description}, ${events[i].occurrences[y].rule.price}
-                                </li>`;
-
-                            if(y == events[i].occurrences.length - 1){
-                                html += spaces[events[i].occurrences[y].space.name] + `</ul></small></div>`;
-                            }
-
-                        }*/
+                        <p>${events[i].shortDescription}</p><br>`;
 
                         periods = new Array();
                         for (var y = 0; y < events[i].occurrences.length; y++) {
@@ -109,22 +88,17 @@ function showEvents(events){
                                 name:events[i].occurrences[y].space.name,
                             };
 
-
-
                             periods[events[i].occurrences[y].space.name] +=
                                 `<li>
                                     ${events[i].occurrences[y].rule.description}, ${events[i].occurrences[y].rule.price}
                                 </li>`;
                         }
 
-
-                        var l;
-                        for (l in spaces) {
-                            html += `<small><ul><b>${spaces[l].name}</b>${periods[spaces[l].name]}</ul></small>`;
+                        for (space in spaces) {
+                            html += `<small><ul><b>${spaces[space].name}</b>${periods[spaces[space].name]}</ul></small>`;
                         }
 
             html += '</div></div>';
-
     }
 
     jQuery('.list_spaces').append(html);

@@ -1,5 +1,5 @@
-<div class="content">
-	<div class="row">
+<div class="content list_events">
+	<div class="row top">
 		<div class="col-md-12">
 			<h3><?= $atts['title']; ?></h3>
 			<div id="date_listevents" data-range="<?= $dataRange; ?>" data-baseurl="<?= $atts['url']; ?>" data-url="<?= $url; ?>" class="pull-right" style="">
