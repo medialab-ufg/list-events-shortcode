@@ -56,7 +56,6 @@ function getEvents(){
         type: 'GET',
         data: {},
         success: function(response) {
-            console.log(response);
             showEvents(response);
         }
     });
@@ -79,20 +78,24 @@ function showEvents(events){
             <p>` + thumb + events[i].shortDescription + `</p>`;
 
             for (var y = 0; y < events[i].occurrences.length; y++) {
+                if(typeof spaces[events[i].occurrences[y].space.name] == 'undefined'){
+                    spaces[events[i].occurrences[y].space.name] = '';
+                    html += `<div><strong>` + events[i].occurrences[y].space.name + `</strong><ul>`;
+                }
 
-                console.log(events[i].occurrences[y].space.id + '-' +events[i].occurrences[y].space.name);
-                //spaces.push[events[i].occurrences[y].space.id]
+                spaces[events[i].occurrences[y].space.name] +=
+                    `<li>` +
+                        events[i].occurrences[y].space.endereco + `,` +
+                        events[i].occurrences[y].rule.description + `, ` + events[i].occurrences[y].rule.price +
+                    `</li>`;
 
-                html += `<div>
-                            <strong>` + events[i].occurrences[y].space.name + `</strong>` +
-                                `<ul><li>` +
-                             events[i].occurrences[y].space.endereco +
-                            `</li><li>` +
-                             events[i].occurrences[y].rule.description + `, ` + events[i].occurrences[y].rule.price +
-                        `</li></ul></div>`;
+                if(y == events[i].occurrences.length - 1){
+                    html += spaces[events[i].occurrences[y].space.name] + `</ul></div>`;
+                }
+
             }
 
-            html += `</ul></div>`;
+            html += '</div>';
 
     }
 
