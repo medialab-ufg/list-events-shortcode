@@ -1,3 +1,11 @@
+#states_list {
+    background: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    height: 32px;    
+}
+
 #date_listevents{
     background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;margin-top: -40px;
 }

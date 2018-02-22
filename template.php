@@ -7,9 +7,10 @@
 			    <span></span> <b class="caret"></b>
 		    </div>			
 		</div>
-		<div class="col-md-12">
-			<select id="states_list" class="pull-right">
-				<option value="">Selecione um estado</option>
+		<div class="col-md-12 text-right">
+			<label for="states_list">UF: </label>
+			<select id="states_list">
+				<option value="">Todos</option>
 				<option value="AC">Acre</option>
 				<option value="AL">Alagoas</option>
 				<option value="AM">Amazonas</option>
