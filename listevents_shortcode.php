@@ -28,7 +28,7 @@ class ListEventsShortcode {
 
         wp_enqueue_script('moment', plugin_dir_url( __FILE__ ) . '/js/moment.min.js');
         wp_enqueue_script('list-events-js-daterangepicker', plugin_dir_url( __FILE__ ) . '/js/daterangepicker.js');
-        wp_enqueue_script('listevents-ajax-script', plugin_dir_url( __FILE__ ) . '/js/app.js', array('jquery'));
+        wp_enqueue_script('listevents-ajax-script', plugin_dir_url( __FILE__ ) . '/js/app.js', array('jquery', 'moment'));
     }
 
 
